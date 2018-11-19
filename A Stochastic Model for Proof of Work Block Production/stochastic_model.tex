@@ -97,7 +97,7 @@ EMA(k_{i}) = \alpha \hat{k_{i}} + (1 - \alpha) \hat{k}_{i - 1}
 \begin{equation}
 EMA(\beta_{i}) = \alpha \beta_{i} + (1 - \alpha) \beta_{i - 1} 
 \end{equation}
-\centerline{$\text{where } \beta_{i} \leq \beta_{max} $}
+\centerline{$\text{where } 0 < \alpha < 1, \text{ } \beta_{i} \leq \beta_{max}$}
 \newline
 
 These parameters may be tuned by a sensitivity parameter $\alpha$.  A helpful metric for tuning the $\alpha$ parameter with respect to security is the security margin $\xi$. 
