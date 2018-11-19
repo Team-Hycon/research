@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  19 NOV 2018 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  19 NOV 2018 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -351,7 +351,7 @@ T1/cmr/m/n/10 .  Avail-able at $\OT1/cmtt/m/n/10 https : / /
 Here is how much of TeX's memory you used:
  2182 strings out of 494923
  29502 string characters out of 6180741
- 86281 words of memory out of 5000000
+ 87281 words of memory out of 5000000
  5473 multiletter control sequences out of 15000+600000
  9529 words of font info for 35 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -374,7 +374,7 @@ m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on stochastic_model.pdf (8 pages, 259207 bytes).
+Output written on stochastic_model.pdf (8 pages, 260150 bytes).
 PDF statistics:
  114 PDF objects out of 1000 (max. 8388607)
  78 compressed objects within 1 object stream

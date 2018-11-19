@@ -163,7 +163,7 @@ A difficulty adjustment algorithm exists for the approximate gamma distribution,
 An alternate model of skew based on block propagation may resemble the equation: 
 
 \begin{equation}
-	H(t) = H_{max} \cdot 1 - ar^t
+	H(t) = H_{max} \cdot (1 - \Lambda^\frac{t}{\tau})
 \end{equation}
 
 \begin{figure}[h]
@@ -174,10 +174,10 @@ An alternate model of skew based on block propagation may resemble the equation:
 
 \pagebreak
 
-Where $r$ describes the rate of block propagation over time and $a$ is a modifying coefficient. The probability density function of such a distribution would be of the form: 
+Where $\Lambda$ describes the proportion of the network not updated for each increase in $t$, and $\tau$ is the time for $1 - \Lambda$ of the network to be updated. The probability density function of such a distribution would be of the form: 
 
 \begin{equation}
-PDF(t) = p(1 - p)^{t(1 - ar^t)\hat{\lambda} t}
+PDF(t) = 2 \cdot t\hat{\lambda}p(1 - \Lambda^t) \cdot e^{-t^2\hat{\lambda}p(1 - \Lambda^\frac{t}{\tau})}
 \end{equation}
 
 \section{Conclusion}
