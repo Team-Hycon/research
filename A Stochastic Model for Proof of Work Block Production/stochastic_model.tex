@@ -17,7 +17,7 @@ In Proof of Work blockchain systems under theoretical conditions, block producti
 Methods of difficulty adjustment in proof of work blockchains have gone through several iterations since the introduction of Bitcoin in 2009.  
 \newline
 
-The original algorithm takes the average block time over a 2016 block period, ideally every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  This however, is vulnerable to extreme changes in hashpower.  In Bitcoin, a reduction of network hashpower of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty to resume normal 10-minute block times.  This in turn leads to a reduction in transaction processing throughput for an extended period, leading to higher transaction fees.   
+The original algorithm takes the average block time over a 2016 block period, ideally every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  This, however, is vulnerable to extreme changes in hashpower.  In Bitcoin, a reduction of network hashpower of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  This in turn would lead to a reduction in transaction processing throughput for an extended period, leading to higher transaction fees.   
 \newline
 
 In response to the drawbacks of Bitcoin's algorithm, other projects have taken to calculating a new difficulty target after every block.   
@@ -26,7 +26,7 @@ In response to the drawbacks of Bitcoin's algorithm, other projects have taken t
 Bitcoin Cash uses a simple moving average (SMA) of time over the last 144 blocks to calculate the difficulty for the next block ~\cite{Bitcoin-ABC}.  This allows the difficulty to converge on an appropriate value quickly in the event of extreme changes in hashpower, as were experienced in the early days of the Bitcoin Cash fork.  Bitcoin Cash was especially vulnerable to this due to the limited number of options ASIC-based miners have in choosing which currency to mine \cite{BitcoinCashMining}.  This caused the hashpower to fluctuate by as much as 300\% \cite{BitcoinCashDifficulty} over the span of 12 hours.   
 \newline
 
-Ethereum uses a piece wise function to adjust its difficulty.  If the block time of the last block is above 20 seconds, the difficulty is adjusted downward; if the block time is less than 10 seconds, the difficulty is adjusted upward \cite{EthereumDifficulty}.  In addition to this calculation, the presence of uncle blocks (due to Ethereum’s implementation of GHOST) also changes how the difficulty is adjusted \cite{EthereumUncles}.
+Ethereum uses a piece-wise function to adjust its difficulty.  If the block time of the last block is above 20 seconds, the difficulty is adjusted downward; if the block time is less than 10 seconds, the difficulty is adjusted upward \cite{EthereumDifficulty}.  In addition to this calculation, the presence of uncle blocks (due to Ethereum’s implementation of GHOST) adds a modifier to how the difficulty is adjusted \cite{EthereumUncles}.
 \newline
 
 In practice, these methods and others work well enough given the high degree of variance and noise in order to maintain a specified average time but exert little control over the precise shape of the distributions of observable block times, owing to the lack of a general, parameterized block production model.
@@ -54,7 +54,7 @@ For a given hashing function to be considered cryptographically secure, the foll
 	\item Collision resistance
 \end{itemize}
 
-For a hash function to be pre-image resistant, it must be sufficiently difficult to resolve the input provided to the hash function when provided only the output, a property shared with one-way functions.   
+For a hash function to be pre-image resistant, it must be sufficiently difficult to resolve the input provided to the hash function when provided only the output, a property shared by one-way functions.   
 \newline 
 
 For a hash function to be second pre-image resistant, it must be difficult to create a second input from the first input which creates the same output to the hash function. 
@@ -63,7 +63,7 @@ For a hash function to be second pre-image resistant, it must be difficult to cr
 For a hash function to be collision resistant, it must be difficult to create a separate input that creates an identical output. 
 \newline
 
-These properties are required for Proof of Work blockchain systems that the block production process is stochastic.  Some examples of popular hashing algorithms used for Proof of Work include SHA-256, SHA-3, Blake2b, Skein, Grøstl, Scrypt and JH, all of which are widely considered to be cryptographically secure \cite{CryptoAlgos}. 
+These properties are required for Proof of Work blockchain systems to ensure that the block production process is stochastic.  Some examples of popular hashing algorithms used for Proof of Work include SHA-256, SHA-3, Blake2b, Skein, Grøstl, Scrypt and JH, all of which are widely considered to be cryptographically secure \cite{CryptoAlgos}. 
 
 \section{Implications of Cryptographically Secure Hashing Functions in Proof of Work Blockchains}
 Using a cryptographically secure hashing algorithm means that there is no strategy for choosing an input which gives a greater chance of producing a desired output, given the random nature of the resulting hash values; they are represented by a discrete random variable with a uniform distribution.  
@@ -139,7 +139,7 @@ p = 1 - (1 - Q)^\frac{1}{t \hat{\lambda}}
 The choice of quantile $Q$ should be determined by the distribution of block rates such that the target time describes the chosen quantile. 
 
 \section{Implications of the Stochastic Model}  
-Under a network where block propagation is instantaneous and all sources of hashpower can immediately respond to mining a new block, with a discrete number of hashes the distribution of block times, this scheme follows a geometric distribution.  However, due to the high number of hashes typically required to produce a block, and since multiple hashing attempts may overlap from different parties, we suggest that an exponential model more appropriately describes the distribution of block times: 
+Under theoretical, ideal network conditions where block propagation is instantaneous and all sources of hashpower can immediately respond to mining a new block with a discrete number of hashes, the distribution of block times in this scheme follows a geometric distribution.  However, due to the high number of hashes typically required to produce a block, and since multiple hashing attempts may overlap from different parties, we suggest that an exponential model more appropriately describes the distribution of block times: 
 
 \begin{figure}[h]
 	\centering
