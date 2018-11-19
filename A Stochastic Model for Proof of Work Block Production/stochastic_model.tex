@@ -149,7 +149,7 @@ Under theoretical, ideal network conditions where block propagation is instantan
 \end{figure}
 
 \section{Future Work}
-In most real circumstances network latency in propagating new blocks makes the total hashpower increase over a delay period until all miners are mining on the new block.  This introduces a skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is no longer constant, but variable, a better model for the distribution of block times follows a gamma distribution, where shape and rate may be computed from the mean block time and the variance of the observed block times.  
+In most real circumstances network latency in propagating new blocks makes the total hashpower increase over a delay period until all miners are mining on the new block.  This introduces a skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is no longer constant, but variable, a better model for the distribution of block times follows a gamma distribution \cite{GammaDistDefinition}, where shape and rate may be computed from the mean block time and the variance of the observed block times.  
 
 \begin{figure}[h]
 	\centering
