@@ -57,6 +57,10 @@
 \newblock Available at
   \url{https://nvlpubs.nist.gov/nistpubs/ir/2012/NIST.IR.7896.pdf}.
 
+\bibitem{HyconNetwork}
+{Hycon Foundation}, {\em Hycon Block Explorer}.
+\newblock Available at \url{https://explorer.hycon.io/}.
+
 \bibitem{GammaDistHycon}
 {Matt Bognar}, {\em Gamma Distribution}.
 \newblock Available at
