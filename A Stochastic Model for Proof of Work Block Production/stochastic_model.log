@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  19 NOV 2018 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  19 NOV 2018 14:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -265,7 +265,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--71
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
+Underfull \hbox (badness 10000) in paragraph at lines 99--102
 
  []
 
@@ -273,37 +273,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--101
 <"./ideal hycon".png, id=32, 507.8975pt x 157.58875pt>
 File: "./ideal hycon".png Graphic file (type png)
 <use "./ideal hycon".png>
-Package pdftex.def Info: "./ideal hycon".png  used on input line 146.
+Package pdftex.def Info: "./ideal hycon".png  used on input line 147.
 (pdftex.def)             Requested size: 241.49895pt x 74.92996pt.
-<"./real hycon".png, id=34, 476.78125pt x 157.58875pt>
+ [5 <./ideal hycon.png>]
+<"./real hycon".png, id=38, 476.78125pt x 157.58875pt>
 File: "./real hycon".png Graphic file (type png)
 <use "./real hycon".png>
-Package pdftex.def Info: "./real hycon".png  used on input line 155.
+Package pdftex.def Info: "./real hycon".png  used on input line 156.
 (pdftex.def)             Requested size: 241.49895pt x 79.82333pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--161
+Underfull \hbox (badness 10000) in paragraph at lines 160--162
 
  []
 
-[5 <./ideal hycon.png>]
 <"./hashpower ramp".png, id=39, 333.245pt x 209.78375pt>
 File: "./hashpower ramp".png Graphic file (type png)
 <use "./hashpower ramp".png>
-Package pdftex.def Info: "./hashpower ramp".png  used on input line 170.
+Package pdftex.def Info: "./hashpower ramp".png  used on input line 171.
 (pdftex.def)             Requested size: 241.49895pt x 152.03009pt.
- [6 <./real hycon.png> <./hashpower ramp.png>]
-(./stochastic_model.bbl
+[6 <./real hycon.png> <./hashpower ramp.png>] (./stochastic_model.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 4--7
+\OT1/cmtt/m/n/10 bitcoin / blob / 78dae8caccd82cfbfd76557f1fb7d7557c7b5edb / sr
+c /
+ []
+
 Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no ™ in font cmti10!
 
 Underfull \hbox (badness 10000) in paragraph at lines 13--17
-[]\OT1/cmr/m/n/10 A. van Wirdum, \OT1/cmr/m/it/10 Min-ers Are Milk-ing Bcashs D
-if-
+[]\OT1/cmr/m/n/10 Aaron van Wirdum, \OT1/cmr/m/it/10 Min-ers Are Milk-ing Bcash
+s Dif-
  []
 
 
@@ -325,15 +325,15 @@ nd-[]why-[]problem1/$\OT1/cmr/m/n/10 .
  []
 
 
-Underfull \hbox (badness 2735) in paragraph at lines 24--28
-[]\OT1/cmr/m/n/10 A. Singh and N. S. Sri-vas-tava, \OT1/cmr/m/it/10 How Dif-fi-
-culty Ad-just-ment Al-go-
+Underfull \hbox (badness 1735) in paragraph at lines 24--28
+\OT1/cmr/m/it/10 go-rithm Works in Ethereum\OT1/cmr/m/n/10 .  Avail-able at $\O
+T1/cmtt/m/n/10 https : / / dltlabs . com /
  []
 
 
-Underfull \hbox (badness 3735) in paragraph at lines 24--28
-\OT1/cmr/m/it/10 rithm Works in Ethereum\OT1/cmr/m/n/10 .  Avail-able at $\OT1/
-cmtt/m/n/10 https : / / dltlabs . com /
+Underfull \hbox (badness 10000) in paragraph at lines 39--42
+\OT1/cmtt/m/n/10 bitcoin / blob / 384967f311b4c6b1d6c797f7821d25feb26bafbf / sr
+c /
  []
 
 
@@ -343,16 +343,13 @@ a /
  []
 
 [7]
-Underfull \hbox (badness 1292) in paragraph at lines 66--69
-[]\OT1/cmr/m/n/10 W. Al-pha, \OT1/cmr/m/it/10 Com-pu-ta-tional In-tel-li-gence\
-OT1/cmr/m/n/10 .  Avail-able at $\OT1/cmtt/m/n/10 https : / / www .
- []
-
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¶ in font cmr10!
 ) [8] (./stochastic_model.aux) ) 
 Here is how much of TeX's memory you used:
  2180 strings out of 494923
  29467 string characters out of 6180741
- 87273 words of memory out of 5000000
+ 86273 words of memory out of 5000000
  5471 multiletter control sequences out of 15000+600000
  9529 words of font info for 35 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -375,7 +372,7 @@ m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on stochastic_model.pdf (8 pages, 258096 bytes).
+Output written on stochastic_model.pdf (8 pages, 258312 bytes).
 PDF statistics:
  114 PDF objects out of 1000 (max. 8388607)
  78 compressed objects within 1 object stream

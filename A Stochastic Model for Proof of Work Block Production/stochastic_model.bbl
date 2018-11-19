@@ -1,69 +1,69 @@
 \begin{thebibliography}{10}
 
 \bibitem{BitcoinRetarget}
-B.~Core, {\em pow.cpp}.
+{Bitcoin Core}, {\em pow.cpp}.
 \newblock Available at
   \url{https://github.com/bitcoin/bitcoin/blob/78dae8caccd82cfbfd76557f1fb7d7557c7b5edb/src/pow.cpp#L49}.
 
 \bibitem{Bitcoin-ABC}
-B.~ABC, {\em Difficulty Adjustment Algorithm Update}.
+{Bitcoin ABC}, {\em Difficulty Adjustment Algorithm Update}.
 \newblock Available at \url{https://www.bitcoinabc.org/2017-11-01-DAA/}.
 
 \bibitem{BitcoinCashMining}
-A.~van Wirdum, {\em Miners Are Milking Bcash’s Difficulty Adjustments (and
-  Why This Is a Problem)}.
+{Aaron van Wirdum}, {\em Miners Are Milking Bcash’s Difficulty Adjustments
+  (and Why This Is a Problem)}.
 \newblock Available at
   \url{https://bitcoinmagazine.com/articles/miners-are-milking-bcashs-difficulty-adjustments-and-why-problem1/}.
 
 \bibitem{BitcoinCashDifficulty}
-BitInfoCharts, {\em Bitcoin Cash Difficulty historical chart}.
+{BitInfoCharts}, {\em Bitcoin Cash Difficulty historical chart}.
 \newblock Available at
   \url{https://bitinfocharts.com/comparison/bitcoin%20cash-difficulty.html}.
 
 \bibitem{EthereumDifficulty}
-A.~Singh and N.~S. Srivastava, {\em How Difficulty Adjustment Algorithm Works
-  in Ethereum}.
+{Ajay Singh and Neeraj S Srivastava}, {\em How Difficulty Adjustment Algorithm
+  Works in Ethereum}.
 \newblock Available at
   \url{https://dltlabs.com/how-difficulty-adjustment-algorithm-works-in-ethereum/}.
 
 \bibitem{EthereumUncles}
-V.~Buterin, {\em EIP 100: Change difficulty adjustment to target mean block
-  time including uncles}.
+{Vitalik Buterin}, {\em EIP 100: Change difficulty adjustment to target mean
+  block time including uncles}.
 \newblock Available at \url{https://github.com/ethereum/EIPs/issues/100}.
 
 \bibitem{BitcoinWhitepaper}
-S.~Nakamoto, {\em Bitcoin: A Peer-to-Peer Electronic Cash System}.
+{Satoshi Nakamoto}, {\em Bitcoin: A Peer-to-Peer Electronic Cash System}.
 \newblock Available at \url{https://bitcoin.org/bitcoin.pdf}.
 
 \bibitem{BitcoinPOW}
-B.~Core, {\em pow.cpp}.
+{Bitcoin Core}, {\em pow.cpp}.
 \newblock Available at
   \url{https://github.com/bitcoin/bitcoin/blob/384967f311b4c6b1d6c797f7821d25feb26bafbf/src/pow.cpp#L74}.
 
 \bibitem{EthereumPOW}
-G.~Ethereum, {\em sealer.go}.
+{Go Ethereum}, {\em sealer.go}.
 \newblock Available at
   \url{https://github.com/ethereum/go-ethereum/blob/144c1c6c52456808428e2b69dbe5c4ebfc3606ca/consensus/ethash/sealer.go\#L166}.
 
 \bibitem{EthereumYellowpaper}
-D.~G. Wood, {\em Ethereum: A Secure Decentralised Generalised Transaction
+{Dr. Gavin Wood}, {\em Ethereum: A Secure Decentralised Generalised Transaction
   Ledger}.
 \newblock Available at \url{https://ethereum.github.io/yellowpaper/paper.pdf}.
 
 \bibitem{CryptoAlgos}
-S.~jen Chang, R.~Perlner, W.~E. Burr, M.~S. Turan, J.~M. Kelsey, S.~Paul, and
-  L.~E. Bassham, {\em Third-Round Report of the SHA-3 Cryptographic Hash
-  Algorithm Competition}.
+{Shu-jen Chang}, {Ray Perlner}, {William E. Burr}, {Meltem Sönmez Turan},
+  {John M. Kelsey}, {Souradyuti Paul}, and {Lawrence E. Bassham}, {\em
+  Third-Round Report of the SHA-3 Cryptographic Hash Algorithm Competition}.
 \newblock Available at
   \url{https://nvlpubs.nist.gov/nistpubs/ir/2012/NIST.IR.7896.pdf}.
 
 \bibitem{GammaDistHycon}
-M.~Bognar, {\em Gamma Distribution}.
+{Matt Bognar}, {\em Gamma Distribution}.
 \newblock Available at
   \url{https://homepage.divms.uiowa.edu/~mbognar/applets/gamma.html}.
 
 \bibitem{Wolfram}
-W.~Alpha, {\em Computational Intelligence}.
+{Wolfram Alpha}, {\em Computational Intelligence}.
 \newblock Available at
   \url{https://www.wolframalpha.com/input/?i=y+%3D+1+-+.5%5Ex+from+0+to+10}.
 
