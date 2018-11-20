@@ -17,7 +17,7 @@ In Proof of Work blockchain systems under theoretical conditions, block producti
 Methods of difficulty adjustment in proof of work blockchains have gone through several iterations since the introduction of Bitcoin in 2009.  
 \newline
 
-The original algorithm takes the average block time over a 2016 block period, ideally every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hashpower.  In Bitcoin, a reduction of network hashpower of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  This in turn would lead to a reduction in transaction processing throughput for an extended period, leading to higher transaction fees.   
+The original algorithm takes the average block time over a 2016 block period, ideally every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hashpower.  In Bitcoin, a reduction of network hashpower of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  Consequently transaction processing throughput is reduced for an extended period, leading to higher transaction fees.   
 \newline
 
 In response to the drawbacks of Bitcoin's algorithm, other projects have taken to calculating a new difficulty target after every block.   
@@ -32,7 +32,7 @@ Ethereum uses a piece-wise function to adjust its difficulty.  If the block time
 In practice, these methods and others work well enough given the high degree of variance and noise in order to maintain a specified average time but exert little control over the precise shape of the distributions of observable block times, owing to the lack of a general, parameterized block production model.  We propose a method of controlling block production time that more accurately represents the actual distribution of possible block times, even in the event of drastic changes to network conditions
 
 \subsection{Difficulty in Proof of Work}
-In a Proof of Work based blockchain system, the hash $H$ of the block is required to satisfy certain conditions \cite{BitcoinWhitepaper}.  In Bitcoin \cite{BitcoinPOW} and Ethereum \cite{EthereumPOW} \cite{EthereumYellowpaper}, a hash with a numerical representation that is less than a given target value is eligible for inclusion into the blockchain.  This can be represented algebraically by the expression:
+In a Proof of Work based blockchain system, the hash $H$ of the block is required to satisfy certain conditions \cite{BitcoinWhitepaper}.  In Bitcoin \cite{BitcoinPOW} and Ethereum \cite{EthereumPOW} \cite{EthereumYellowpaper}, a hash with a numerical representation that is less than a given target value is eligible for inclusion into the blockchain, which can be represented algebraically by the expression:
 
 \begin{equation}
 H < T
@@ -44,7 +44,7 @@ As hash values in use in most PoW blockchain systems have specific bounds, the p
 	p = \frac{T}{R} 
 \end{equation}
 
-The inverse of this probability represents the expected number of hashes, or the mean number of hashes, to produce a block with the supplied target.  This inverse is more commonly known as the block difficulty.  Thus, a lower target value results in a higher difficulty.  Combining this feature with an estimate of the total hashrate of the network allows the protocol to adjust difficulty such that some target time $t$ is maintained on average between blocks.  
+The inverse of this probability represents the expected number of hashes, or the mean number of hashes, to produce a block with the supplied target, more commonly known as the block difficulty.  Thus, a lower target value results in a higher difficulty.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty such that some target time $t$ is maintained on average between blocks.  
 
 \section{Properties of Cryptographically Secure Hashing Functions}
 For a given hashing function to be considered cryptographically secure, the following three properties must be present: 
@@ -76,7 +76,7 @@ CDF(p, k) = 1 - (1 - p)^k
 \end{equation}
 
 \pagebreak
-From this cumulative distribution function, it is possible to solve for $p$ for the desired distribution for a given $k$ and desired quantile $Q$.  
+From the cumulative distribution function, it is possible to solve for $p$ for the desired distribution for a given $k$ and desired quantile $Q$.  
 
 \begin{equation}
 p = 1 - (1 - Q)^\frac{1}{k}
@@ -196,10 +196,10 @@ PDF(t) = 2 \cdot t\hat{\lambda}p(1 - \Lambda^t) \cdot e^{-t^2\hat{\lambda}p(1 - 
 	\caption{\footnotesize An example PDF from the advanced model \cite{AdvancedDistribution}}
 \end{figure}
 
+\pagebreak
+
 \section{Conclusion}
 Using an exponential distribution as a model of block time distribution and an exponential moving average of network hashpower, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately from a gamma distribution, and further still by a distribution that contains a more complex model of hashrate consolidation. 
-
-\pagebreak
 
 \bibliography{mybib}
 \bibliographystyle{ieeetr}
