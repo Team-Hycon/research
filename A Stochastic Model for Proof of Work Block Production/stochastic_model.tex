@@ -180,8 +180,16 @@ Where $\Lambda$ describes the proportion of the network not updated for each inc
 PDF(t) = 2 \cdot t\hat{\lambda}p(1 - \Lambda^t) \cdot e^{-t^2\hat{\lambda}p(1 - \Lambda^\frac{t}{\tau})}
 \end{equation}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"./bestpdf"}
+	\caption{\footnotesize An example PDF from the advanced model}
+\end{figure}
+
 \section{Conclusion}
 Using an exponential distribution as a model of block time distribution and an exponential moving average of network hashpower, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately from a gamma distribution, and further still by a distribution that contains a more complex model of hashrate consolidation. 
+
+\pagebreak
 
 \bibliography{mybib}
 \bibliographystyle{ieeetr}
