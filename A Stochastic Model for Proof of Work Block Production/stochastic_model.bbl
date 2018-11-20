@@ -50,6 +50,13 @@
   Ledger}.
 \newblock Available at \url{https://ethereum.github.io/yellowpaper/paper.pdf}.
 
+\bibitem{CryptoHashFunctions}
+P.~Rogaway and T.~Shrimpton, {\em Cryptographic Hash-Function Basics:
+  Definitions, Implications, and Separations for Preimage Resistance,
+  Second-Preimage Resistance, and Collision Resistance}.
+\newblock Available at
+  \url{http://web.cs.ucdavis.edu/~rogaway/papers/relates.pdf}.
+
 \bibitem{CryptoAlgos}
 {Shu-jen Chang}, {Ray Perlner}, {William E. Burr}, {Meltem Sönmez Turan},
   {John M. Kelsey}, {Souradyuti Paul}, and {Lawrence E. Bassham}, {\em
