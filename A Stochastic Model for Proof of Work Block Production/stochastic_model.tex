@@ -170,6 +170,8 @@ In most real circumstances network latency in propagating new blocks makes the t
 A difficulty adjustment algorithm exists for the approximate gamma distribution, although as alpha and beta may vary over time, a more complex analysis is needed to maintain the security thresholds and prevent manipulation of inputs by malicious parties.  One approach may be to model the shape and rate parameters with exponential moving averages with a sensitivity appropriate to the desired security margin.  
 \newline
 
+\pagebreak
+
 An alternate model of skew based on block propagation may resemble the equation: 
 
 \begin{equation}
@@ -181,8 +183,6 @@ An alternate model of skew based on block propagation may resemble the equation:
 	\includegraphics[width=0.7\linewidth]{"./hashpower ramp"}
 	\caption{\footnotesize How hashrate might tend to full consolidation over time \cite{Wolfram}}
 \end{figure}
-
-\pagebreak
 
 Where $\Lambda$ describes the proportion of the network not updated for each increase in $t$, and $\tau$ is the time for $1 - \Lambda$ of the network to be updated. The probability density function of such a distribution would be of the form: 
 
