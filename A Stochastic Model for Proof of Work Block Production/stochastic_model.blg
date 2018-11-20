@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: stochastic_model.aux
 The style file: ieeetr.bst
 Database file #1: mybib.bib
-You've used 15 entries,
+You've used 16 entries,
             1876 wiz_defined-function locations,
-            549 strings with 6111 characters,
-and the built_in function-call counts, 1877 in all, are:
-= -- 166
-> -- 79
+            552 strings with 6323 characters,
+and the built_in function-call counts, 1995 in all, are:
+= -- 177
+> -- 83
 < -- 0
-+ -- 36
-- -- 21
-* -- 60
-:= -- 286
-add.period$ -- 30
-call.type$ -- 15
++ -- 38
+- -- 22
+* -- 63
+:= -- 303
+add.period$ -- 32
+call.type$ -- 16
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 105
-empty$ -- 226
-format.name$ -- 21
-if$ -- 435
+cite$ -- 16
+duplicate$ -- 112
+empty$ -- 241
+format.name$ -- 22
+if$ -- 463
 int.to.chr$ -- 0
-int.to.str$ -- 15
+int.to.str$ -- 16
 missing$ -- 0
-newline$ -- 63
-num.names$ -- 15
-pop$ -- 60
+newline$ -- 67
+num.names$ -- 16
+pop$ -- 64
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 44
+skip$ -- 47
 stack$ -- 0
 substring$ -- 0
-swap$ -- 30
+swap$ -- 32
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 15
-width$ -- 17
-write$ -- 122
+while$ -- 16
+width$ -- 18
+write$ -- 130

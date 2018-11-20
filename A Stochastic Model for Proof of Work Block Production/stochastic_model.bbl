@@ -43,7 +43,7 @@
 \bibitem{EthereumPOW}
 {Go Ethereum}, {\em sealer.go}.
 \newblock Available at
-  \url{https://github.com/ethereum/go-ethereum/blob/144c1c6c52456808428e2b69dbe5c4ebfc3606ca/consensus/ethash/sealer.go\#L166}.
+  \url{https://github.com/ethereum/go-ethereum/blob/144c1c6c52456808428e2b69dbe5c4ebfc3606ca/consensus/ethash/sealer.go#L166}.
 
 \bibitem{EthereumYellowpaper}
 {Dr. Gavin Wood}, {\em Ethereum: A Secure Decentralised Generalised Transaction
@@ -75,5 +75,10 @@
 {Wolfram Alpha}, {\em Computational Intelligence}.
 \newblock Available at
   \url{https://www.wolframalpha.com/input/?i=y+%3D+1+-+.5%5Ex+from+0+to+10}.
+
+\bibitem{AdvancedDistribution}
+{Wolfram Alpha}, {\em Computational Intelligence}.
+\newblock Available at
+  \url{https://www.wolframalpha.com/input/?i=y+\%3D+2+*+t+*+1000+*+.00001+*+(1+-+.4\%5Et)+*+e\%5E(-t\%5E2+*+1000+*+.00001+*+(1+-+.4\%5E(t+\%2F+15)))+from+0+to+35}.
 
 \end{thebibliography}
