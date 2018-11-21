@@ -10,41 +10,41 @@
 
 
 \begin{abstract}
-In Proof of Work blockchain systems under theoretical conditions, block production time can be modeled as an exponential distribution, which provides a natural method for adjusting to changes in network hashpower via a cumulative distribution function.  The cumulative distribution function can be adjusted by modeling network hashpower via two exponential moving averages, one for block production time and the other for block difficulty, and by choosing a desired quantile for a target time to produce a block.  Improvements to the model include accounting for latency in hashpower consolidation and block propagation.     
+In Proof of Work blockchain systems, block production time can be modeled as an exponential distribution, which provides a natural method for adjusting to changes in network hashpower via a cumulative distribution function.  The cumulative distribution function can be adjusted by modeling network hashpower via two exponential moving averages, one for block production time and the other for block work, and by choosing a desired quantile for a target time to produce a block.  Improvements to the model include accounting for latency in hashpower consolidation and block propagation.     
 \end{abstract}
 
 \section{Introduction}
 Methods of difficulty adjustment in proof of work blockchains have gone through several iterations since the introduction of Bitcoin in 2009.  
 \newline
 
-The original algorithm takes the average block time over a 2016 block period, ideally every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hashpower.  In Bitcoin, a reduction of network hashpower of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  Consequently transaction processing throughput is reduced for an extended period, leading to higher transaction fees.   
+The original algorithm takes the average block time over a 2016 block period, approximately once every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hashpower.  In Bitcoin, a reduction of network hashpower of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  Consequently transaction processing throughput is reduced for an extended period, leading to higher transaction fees.   
 \newline
 
 In response to the drawbacks of Bitcoin's algorithm, other projects have taken to calculating a new difficulty target after every block.   
 \newline
 
-Bitcoin Cash uses a simple moving average (SMA) of time over the last 144 blocks to calculate the difficulty for the next block ~\cite{Bitcoin-ABC}.  An SMA allows difficulty to respond appropriately in the event of extreme changes in hashpower, as were experienced in the early days of the Bitcoin Cash fork.  Bitcoin Cash was especially vulnerable to hashpower fluctuation due to the limited number of options ASIC-based miners have in choosing which currency to mine \cite{BitcoinCashMining}.  In turn, the network hashpower fluctuated by as much as 300\% \cite{BitcoinCashDifficulty} over the span of 12 hours on multiple occasions.   
+Bitcoin Cash uses a simple moving average (SMA) of time over the last 144 blocks to calculate the difficulty for the next block ~\cite{Bitcoin-ABC}.  An SMA allows difficulty to respond appropriately in the event of extreme changes in hashpower, as were experienced in the early days of the Bitcoin Cash fork.  Bitcoin Cash was especially vulnerable to hashpower fluctuation due to a combination of the limited number of options ASIC-based miners have in choosing which currency to mine and the relatively unresponsive nature of Bitcoin's difficulty adjustment \cite{BitcoinCashMining}.  In turn, the network hashpower fluctuated by as much as 300\% \cite{BitcoinCashDifficulty} over the span of 12 hours on multiple occasions.   
 \newline
 
 Ethereum uses a piece-wise function to adjust its difficulty.  If the block time of the last block is above 20 seconds, the difficulty is adjusted downward; if the block time is less than 10 seconds, the difficulty is adjusted upward \cite{EthereumDifficulty}.  In addition to this calculation, the presence of uncle blocks (due to Ethereum's implementation of GHOST) adds a modifier to how the difficulty is adjusted \cite{EthereumUncles}.
 \newline
 
-In practice, these methods and others work well enough given the high degree of variance and noise in order to maintain a specified average time but exert little control over the precise shape of the distributions of observable block times, owing to the lack of a general, parameterized block production model.  We propose a method of controlling block production time that more accurately represents the actual distribution of possible block times, even in the event of drastic changes to network conditions
+In practice, these methods and others work well enough given the high degree of variance and noise in order to maintain a specified average time but exert little control over the precise shape of the distributions of observable block times, owing to the lack of a general, parameterized block production model.  We propose a method of controlling block production time that is derived from a statistical model, representing the distribution of possible block times, capable of adapting even in the event of drastic changes to network conditions
 
 \subsection{Difficulty in Proof of Work}
-In a Proof of Work based blockchain system, the hash $H$ of the block is required to satisfy certain conditions \cite{BitcoinWhitepaper}.  In Bitcoin \cite{BitcoinPOW} and Ethereum \cite{EthereumPOW} \cite{EthereumYellowpaper}, a hash with a numerical representation that is less than a given target value is eligible for inclusion into the blockchain, which can be represented algebraically by the expression:
+In a Proof of Work based blockchain system, the hash $h$ of a block is required to satisfy certain conditions \cite{BitcoinWhitepaper}.  A hash that satisfies such conditions can be said to belong to the set of usable hashes $H_u$.  If the condition is such that the value of $h$ must be below some target value $D$, then it can be said:
 
 \begin{equation}
-H < T
+\forall \text{ } h \in H_u, \text{ } h \le D
 \end{equation}
 
-As hash values in use in most PoW blockchain systems have specific bounds, the probability $p$ that a randomly generated hash value is less than the target value $T$ can be represented by proportion of $T$ over the range $R$ of the hash function: 
+The probability that a randomly chosen hash value $h$ is a member of $H_u$ can be represented by proportion of $|H_u|$ over the set of possible hash outputs $|H|$ of the hash function: 
 
 \begin{equation}
-	p = \frac{T}{R} 
+	P(h \in H_u) = \frac{|H_u|}{|H|} 
 \end{equation}
 
-The inverse of this probability represents the expected number of hashes, or the mean number of hashes, to produce a block with the supplied target, more commonly known as the block difficulty.  Thus, a lower target value results in a higher difficulty.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty such that some target time $t$ is maintained on average between blocks.  
+The reciprocal of this probability represents the expected or mean number of randomly chosen hashes, to produce a hash $h$ that belongs to $H_u$, more commonly known as the block difficulty.  Thus, a lower target value results in a higher difficulty, and allows the network to control the amount of work required to produce a block.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty to minimize the difference between the target time $t$ and mean block time.  
 
 \section{Properties of Cryptographically Secure Hashing Functions}
 For a given hashing function to be considered cryptographically secure, the following three properties \cite{CryptoHashFunctions} must be present: 
