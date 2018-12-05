@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  21 NOV 2018 14:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  5 DEC 2018 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -248,8 +248,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--65
 
  []
 
-Missing character: There is no Ã in font cmr10!
-Missing character: There is no ¸ in font cmr10!
+
+LaTeX Warning: Command \o invalid in math mode on input line 66.
+
 
 Overfull \hbox (10.33063pt too wide) in paragraph at lines 68--68
 []\OT1/cmr/bx/n/12 Implications of Cryp-to-graph-i-cally Se-cure Hash-ing Func-
@@ -412,7 +413,7 @@ amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on stochastic_model.pdf (9 pages, 275624 bytes).
+Output written on stochastic_model.pdf (9 pages, 276018 bytes).
 PDF statistics:
  123 PDF objects out of 1000 (max. 8388607)
  83 compressed objects within 1 object stream

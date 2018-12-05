@@ -38,13 +38,13 @@ In a Proof of Work based blockchain system, the hash $h$ of a block is required 
 \forall \text{ } h \in H_u, \text{ } h \le D
 \end{equation}
 
-The probability that a randomly chosen hash value $h$ is a member of $H_u$ can be represented by proportion of $|H_u|$ over the set of possible hash outputs $|H|$ of the hash function: 
+The probability that a randomly chosen hash value $h \in H_u$ can be represented by proportion of the cardinality $|H_u|$ divided by the cardinality of the set of possible hash outputs $|H|$ of the hash function: 
 
 \begin{equation}
 	P(h \in H_u) = \frac{|H_u|}{|H|} 
 \end{equation}
 
-The reciprocal of this probability represents the expected or mean number of randomly chosen hashes, to produce a hash $h$ that belongs to $H_u$, more commonly known as the block difficulty.  Thus, a lower target value results in a higher difficulty, and allows the network to control the amount of work required to produce a block.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty to minimize the difference between the target time $t$ and mean block time.  
+The reciprocal of this probability represents the expected or mean number of randomly chosen hashes, to produce a hash $h \in H_u$, more commonly known as the block difficulty.  Thus, a lower target value $D$ results in a higher difficulty, and allows the network to control the amount of work required to produce a block.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty to minimize the difference between the target mean time $t$ and actual mean block time.  
 
 \section{Properties of Cryptographically Secure Hashing Functions}
 For a given hashing function to be considered cryptographically secure, the following three properties \cite{CryptoHashFunctions} must be present: 
@@ -63,7 +63,7 @@ For a hash function to be second pre-image resistant, it must be difficult to cr
 For a hash function to be collision resistant, it must be difficult to create a separate input that creates an identical output. 
 \newline
 
-These properties are required for Proof of Work blockchain systems to ensure that the block production process is stochastic.  Some examples of popular hashing algorithms used for Proof of Work include SHA-256, SHA-3, Blake2b, Skein, Grøstl, Scrypt and JH, all of which are widely considered to be cryptographically secure \cite{CryptoAlgos}. 
+These properties are required for Proof of Work blockchain systems to ensure that the block production process is stochastic.  Some examples of popular hashing algorithms used for Proof of Work include SHA-256, SHA-3, Blake2b, Skein, and Gr$\o$stl, all of which are widely considered to be cryptographically secure \cite{CryptoAlgos}. 
 
 \subsection{Implications of Cryptographically Secure Hashing Functions in Proof of Work Blockchains}
 Using a cryptographically secure hashing algorithm means that there is no strategy for choosing an input which gives a greater chance of producing a desired output, given the random nature of the resulting hash values; they are represented by a discrete random variable with a uniform distribution.  
