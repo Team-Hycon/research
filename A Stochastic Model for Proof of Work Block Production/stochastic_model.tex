@@ -44,7 +44,7 @@ The probability that a randomly chosen hash value $h \in H_u$ can be represented
 	P(h \in H_u) = \frac{|H_u|}{|H|} 
 \end{equation}
 
-The reciprocal of this probability represents the expected or mean number of randomly chosen hashes, to produce a hash $h \in H_u$, more commonly known as the block difficulty.  Thus, a lower target value $D$ results in a higher difficulty, and allows the network to control the amount of work required to produce a block.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty to minimize the difference between the target mean time $t$ and actual mean block time.  
+The reciprocal of this probability represents the expected or mean number of randomly chosen hashes, to produce a hash $h \in H_u$, more commonly known as the block difficulty.  Thus, a lower target value $D$ results in a higher difficulty, and allows the network to control the amount of work required to produce a block.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty to minimize the difference between the target mean time $T$ and actual mean block time.  
 
 \section{Properties of Cryptographically Secure Hashing Functions}
 For a given hashing function to be considered cryptographically secure, the following three properties \cite{CryptoHashFunctions} must be present: 
@@ -129,22 +129,22 @@ In the context of security in a blockchain, $x$ is the number of maliciously cra
 We suggest that $\alpha$ be chosen such that the expected cost of acquiring $\xi$ influence by any one party be greater than or equal to the cost of attacking the network via other means.  
 
 \subsection{Choosing a Difficulty Parameter}
-The goal of the difficulty parameter $p$ is to control the block production rate $\beta$ such that $\beta$ converges to some target $t$.  An estimated network hashrate $\hat{\lambda}$ can be defined as: 
+The goal of the difficulty parameter $p$ is to control the block production rate $\beta$ such that $\beta$ converges to some target $T$.  An estimated network hashrate $\hat{\lambda}$ can be defined as: 
 
 \begin{equation}
 \hat{\lambda} = \frac{EMA(\hat{k})}{EMA(\beta)}
 \end{equation}
 
-To adjust p such that $\hat{\lambda}$ converges toward $t$, a new mean $k$ value may be decided via:
+To adjust p such that $\hat{\lambda}$ converges toward $T$, a new mean $k$ value may be decided via:
 
 \begin{equation}
-	k = t \cdot \hat{\lambda}
+	k = T \cdot \hat{\lambda}
 \end{equation} 
 
 Thus, a new difficulty parameter $p$ may be determined by substituting for $k$: 
 
 \begin{equation}
-p = 1 - (1 - Q)^\frac{1}{t \hat{\lambda}} 
+p = 1 - (1 - Q)^\frac{1}{T \hat{\lambda}} 
 \end{equation}
 
 The choice of quantile $Q$ should be determined by the distribution of block rates such that the target time describes the chosen quantile. 
