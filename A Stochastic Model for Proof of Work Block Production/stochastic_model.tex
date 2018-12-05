@@ -69,7 +69,7 @@ These properties are required for Proof of Work blockchain systems to ensure tha
 Using a cryptographically secure hashing algorithm means that there is no strategy for choosing an input which gives a greater chance of producing a desired output, given the random nature of the resulting hash values; they are represented by a discrete random variable with a uniform distribution.  
 \newline
 
-Thus, the distribution that describes the relationship between several trials and the chance of success of a given number of trials k can be described by the cumulative distribution function of a geometric distribution, where p represents the chance of success of any individual hashing attempt.   
+Thus, the distribution that describes the relationship between several trials and the chance of success of a given number of trials $k$ can be described by the cumulative distribution function of a geometric distribution, where $p$ represents the chance of success of any individual hashing attempt.   
 
 \begin{equation}
 CDF(p, k) = 1 - (1 - p)^k
@@ -152,6 +152,10 @@ The choice of quantile $Q$ should be determined by the distribution of block rat
 \subsection{Implications of the Stochastic Model}  
 Under theoretical, ideal network conditions where block propagation is instantaneous and all sources of hashpower can immediately respond to mining a new block with a discrete number of hashes, the distribution of block times in this scheme follows a geometric distribution.  However, due to the high number of hashes typically required to produce a block, and since multiple hashing attempts may overlap from different parties, we suggest that an exponential model more appropriately describes the distribution of block times: 
 
+\begin{equation}
+PDF(t) = ke^{-kt}
+\end{equation}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"./ideal hycon"}
@@ -159,7 +163,11 @@ Under theoretical, ideal network conditions where block propagation is instantan
 \end{figure}
 
 \section{Future Work}
-In most real circumstances network latency in propagating new blocks makes the total hashpower increase over a delay period until all miners are mining on the new block.  This introduces a skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is no longer constant, but variable, a better model for the distribution of block times follows a gamma distribution \cite{GammaDistDefinition}, where shape and rate may be computed from the mean and variance of the observed block times.  
+In most real circumstances network latency in propagating new blocks makes the total hashpower increase over a delay period until all miners are mining on the new block.  This introduces a skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is no longer constant, but variable, a better model for the distribution of block times follows a gamma distribution \cite{GammaDistDefinition}, where shape $A$ and rate $B$ may be computed from the mean and variance of the observed block times.  
+
+\begin{equation}
+PDF(t) = \frac{1}{\Gamma(A)} t^{A - 1}e^{-Bt}
+\end{equation}
 
 \begin{figure}[h]
 	\centering
@@ -167,7 +175,7 @@ In most real circumstances network latency in propagating new blocks makes the t
 	\caption{\footnotesize A better approximation of the real block time distribution in the Hycon Network. The red portion represents the lower half of the distribution. \cite{GammaDistHycon}}
 \end{figure}
 
-A difficulty adjustment algorithm exists for the approximate gamma distribution, although as alpha and beta may vary over time, a more complex analysis is needed to maintain the security thresholds and prevent manipulation of inputs by malicious parties.  One approach may be to model the shape and rate parameters with exponential moving averages with a sensitivity appropriate with respect to security and performance.  
+A difficulty adjustment algorithm exists for the approximate gamma distribution, although as alpha and beta may vary over time, a more complex analysis is needed to maintain the security thresholds and prevent manipulation of inputs by malicious parties.  One approach may be to model $A$ and $B$ with exponential moving averages with a sensitivity appropriate with respect to security and performance.  
 \newline
 
 \pagebreak
