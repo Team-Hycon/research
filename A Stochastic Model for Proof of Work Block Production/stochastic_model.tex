@@ -17,7 +17,7 @@ In Proof of Work blockchain systems, block production time can be modeled as an 
 Methods of difficulty adjustment in proof of work blockchains have gone through several iterations since the introduction of Bitcoin in 2009.  
 \newline
 
-Bitcoin's original algorithm calculates the average block time over a 2016 block period, approximately once every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hash power.  In Bitcoin, a reduction of network hash power of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  Consequently transaction processing throughput is reduced for an extended period, leading to higher transaction fees.   
+Bitcoin's original algorithm calculates the average block time over a period of 2016 blocks, approximately once every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hash power.  In Bitcoin, a reduction of network hash power of 50\% shortly after a difficulty adjustment would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  Consequently transaction processing throughput is reduced for an extended period, leading to higher transaction fees.   
 \newline
 
 In response to the drawbacks of Bitcoin's algorithm, other projects have taken to calculating a new difficulty target after every block.   
@@ -29,7 +29,7 @@ Bitcoin Cash uses a simple moving average (SMA) of time over the last 144 blocks
 Ethereum uses a piece-wise function to adjust its difficulty.  If the block time of the last block is above 20 seconds, the difficulty is adjusted downward; if the block time is less than 10 seconds, the difficulty is adjusted upward \cite{EthereumDifficulty}.  In addition to this calculation, the presence of uncle blocks (due to Ethereum's implementation of GHOST) adds a modifier to how the difficulty is adjusted \cite{EthereumUncles}.
 \newline
 
-In practice, these methods and others work well enough given the high degree of variance and noise in order to maintain a specified average time but exert little control over the precise shape of the distributions of observable block times, owing to the lack of a general, parameterized block production model.  We propose a method of controlling block production time that is derived from a statistical model, representing the distribution of possible block times, capable of adapting even in the event of drastic changes to network conditions
+In practice, these methods and others work well enough given the high degree of variance and noise in order to maintain a specified average time but exert little control over the precise shape of the distributions of observable block times, owing to the lack of a general, parameterized block production model.  We propose a method of controlling block production time that is derived from a statistical model, representing the distribution of possible block times, capable of adapting even in the event of drastic changes to network conditions.
 
 \subsection{Difficulty in Proof of Work}
 In a Proof of Work based blockchain system, the hash $h$ of a block is required to satisfy certain conditions \cite{BitcoinWhitepaper}.  A hash that satisfies such conditions can be said to belong to the set of usable hashes $H_u$.  If the condition is such that the value of $h$ must be below some target value $D$, then it can be said:
@@ -38,7 +38,7 @@ In a Proof of Work based blockchain system, the hash $h$ of a block is required 
 \forall \text{ } h \in H_u, \text{ } h \le D
 \end{equation}
 
-The probability that a randomly chosen hash value $h$ is usable ($h \in H \land h \in H_u$) can be represented by proportion of the cardinality $|H_u|$ divided by the cardinality of the set of possible hash outputs $|H|$ of the hash function: 
+The probability that a randomly chosen hash value $h$ is usable ($h \in H \land h \in H_u$) can be represented by proportion of the cardinality $|H_u|$ divided by the range $|H|$ of the hash function: 
 
 \begin{equation}
 	P(h \in H_u | h \in H) = \frac{|H_u|}{|H|} 
@@ -135,7 +135,7 @@ In the context of blockchain security, $x$ is the number of maliciously crafted 
 We suggest that a value for $\alpha$ be chosen such that the expected cost of acquiring $\xi$ influence by any one party be greater than or equal to the cost of attacking the network via other means.  
 
 \subsection{Choosing a Difficulty Parameter}
-The role of the difficulty parameter $p$ is to control the block production rate $\beta$ such that the difference between $\beta$ converges to some target $T$ is minimized.  An estimated network hashrate $\hat{\lambda}$ can be defined as: 
+The role of the difficulty parameter $p$ is to control the block production rate $\beta$ such that $\beta$ approaches $T$.  An estimated network hashrate $\hat{\lambda}$ can be defined as: 
 
 \begin{equation}
 \hat{\lambda} = \frac{EMA(\hat{k})}{EMA(\beta)}
@@ -169,7 +169,7 @@ PDF(t) = ke^{-kt}
 \end{figure}
 
 \section{Future Work}
-In most real circumstances network latency in propagating new blocks makes the total hash power increase over a delay period until all miners are mining on the new block, introducing a higher variance and skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is a function of typical block propagation latency, a better model for the distribution of block times follows a gamma distribution \cite{GammaDistDefinition}, where shape $A$ and rate $B$ may be computed from the mean and variance of the observed block times.  
+In most real circumstances network latency in propagating new blocks makes the total effective hash power increase over a delayed period until all miners are mining on the new block, introducing a higher variance and skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is a function of typical block propagation latency, a better model for the distribution of block times follows a gamma distribution \cite{GammaDistDefinition}, where shape $A$ and rate $B$ may be computed from the mean and variance of the observed block times.  
 
 \begin{equation}
 PDF(t) = \frac{1}{\Gamma(A)} t^{A - 1}e^{-Bt}
@@ -219,7 +219,7 @@ Comparing the theoretical models to observed data, it is clear that the distribu
 \end{figure}
 
 \section{Conclusion}
-Using an exponential distribution as a model of block time distribution and an exponential moving average of network hash power, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Tentative empirical data from the Hycon network indicates that this maintains a reasonable block time despite large fluctuations in effective hash power.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately by a gamma distribution, and further still by a distribution that contains a more complex model of effective hash power. 
+Using an exponential distribution as a model of block time distribution and an exponential moving average of network hash power, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Empirical data from the Hycon network indicates that this maintains a reasonable block time despite large fluctuations in effective hash power.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately by a gamma distribution, and further still by a distribution that contains a more complex model of effective hash power. 
 
 \bibliography{mybib}
 \bibliographystyle{ieeetr}
