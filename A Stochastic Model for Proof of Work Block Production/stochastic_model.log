@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  6 DEC 2018 15:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.13)  6 DEC 2018 15:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -278,12 +278,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--134
  []
 
 [5]
-<"./ideal hycon".png, id=36, 507.8975pt x 157.58875pt>
+<"./ideal hycon".png, id=35, 507.8975pt x 157.58875pt>
 File: "./ideal hycon".png Graphic file (type png)
 <use "./ideal hycon".png>
 Package pdftex.def Info: "./ideal hycon".png  used on input line 167.
 (pdftex.def)             Requested size: 241.49895pt x 74.92996pt.
-<"./real hycon".png, id=38, 476.78125pt x 157.58875pt>
+<"./real hycon".png, id=37, 476.78125pt x 157.58875pt>
 File: "./real hycon".png Graphic file (type png)
 <use "./real hycon".png>
 Package pdftex.def Info: "./real hycon".png  used on input line 180.
@@ -294,18 +294,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 184--186
  []
 
 [6 <./ideal hycon.png> <./real hycon.png>]
-<"./hashpower ramp".png, id=44, 333.245pt x 209.78375pt>
+<"./hashpower ramp".png, id=43, 333.245pt x 209.78375pt>
 File: "./hashpower ramp".png Graphic file (type png)
 <use "./hashpower ramp".png>
 Package pdftex.def Info: "./hashpower ramp".png  used on input line 195.
 (pdftex.def)             Requested size: 241.49895pt x 152.03009pt.
  [7 <./hashpower ramp.png>]
-<"./bestpdf".png, id=50, 329.23pt x 199.74625pt>
+<"./bestpdf".png, id=49, 329.23pt x 199.74625pt>
 File: "./bestpdf".png Graphic file (type png)
 <use "./bestpdf".png>
 Package pdftex.def Info: "./bestpdf".png  used on input line 209.
 (pdftex.def)             Requested size: 241.49895pt x 146.5237pt.
-<"./blocktime distribution".png, id=51, 761.84625pt x 255.95625pt>
+<"./blocktime distribution".png, id=50, 761.84625pt x 255.95625pt>
 File: "./blocktime distribution".png Graphic file (type png)
 <use "./blocktime distribution".png>
 Package pdftex.def Info: "./blocktime distribution".png  used on input line 217
@@ -380,11 +380,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--80
 Here is how much of TeX's memory you used:
  2193 strings out of 494923
  29784 string characters out of 6180741
- 87281 words of memory out of 5000000
+ 87290 words of memory out of 5000000
  5482 multiletter control sequences out of 15000+600000
  9836 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,11n,25p,761b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,25p,761b,321s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
@@ -394,20 +394,19 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on stochastic_model.pdf (10 pages, 294597 bytes).
+dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on stochastic_model.pdf (10 pages, 286284 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
+ 124 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
