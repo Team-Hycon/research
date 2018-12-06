@@ -108,7 +108,7 @@ EMA(\beta_{i}) = \alpha \beta_{i} + (1 - \alpha) \beta_{i - 1}
 
 \subsection{Choosing an $\alpha$ value}
 
-As observed data is subject to luck, manipulation, or poor clock synchronization, the bias $\alpha$ toward present data must be appropriately selected.  An $\alpha$ value that is too high is prone to manipulation and attack, as a small number of inputs can significantly change the average.  However, a high $\alpha$ is also capable of reacting to severe changes in network conditions more quickly.  Conversely, a low $\alpha$ is significantly harder to manipulate, but is unable to respond to severe changes in network conditions, leading to potentially undesirable block production rates.
+As observed data is subject to luck, manipulation, or poor clock synchronization, the bias $\alpha$ toward present data must be appropriately selected.  An $\alpha$ value that is too high is prone to manipulation and attack, as a small number of inputs can significantly change the moving average.  However, a high $\alpha$ is also capable of reacting to severe changes in network conditions more quickly.  Conversely, a low $\alpha$ is significantly harder to manipulate, but is unable to respond to severe changes in network conditions, leading to potentially undesirable block production rates.
 \newline 
 
  A helpful metric for choosing an $\alpha$ parameter is the proportion of influence of new inputs to old inputs $\xi$:
@@ -129,10 +129,10 @@ For a given $\xi$, an $\alpha$ may be chosen from the required number of observa
 \alpha = 1 - \xi^\frac{1}{x}
 \end{equation}
 
-In the context of security in a blockchain, $x$ is the number of maliciously crafted blocks required to have artificial inputs to have $\xi$ influence over the EMA calculations.  In the context of sensitivity, $x$ is the number of blocks needed to respond with $\xi$ effectiveness over extreme changes in network configuration.  
+In the context of blockchain security, $x$ is the number of maliciously crafted blocks required to have artificial inputs in order to have $\xi$ influence over the EMA calculations.  Regarding sensitivity, $x$ is the number of blocks needed to respond with $\xi$ effectiveness over extreme changes in network configuration.  
 \newline
 
-We suggest that $\alpha$ be chosen such that the expected cost of acquiring $\xi$ influence by any one party be greater than or equal to the cost of attacking the network via other means.  
+We suggest that a value for $\alpha$ be chosen such that the expected cost of acquiring $\xi$ influence by any one party be greater than or equal to the cost of attacking the network via other means.  
 
 \subsection{Choosing a Difficulty Parameter}
 The role of the difficulty parameter $p$ is to control the block production rate $\beta$ such that the difference between $\beta$ converges to some target $T$ is minimized.  An estimated network hashrate $\hat{\lambda}$ can be defined as: 
@@ -219,7 +219,7 @@ Comparing the theoretical models to observed data, it is clear that the distribu
 \end{figure}
 
 \section{Conclusion}
-Using an exponential distribution as a model of block time distribution and an exponential moving average of network hash power, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Tentative empirical data from the Hycon network indicates that this maintains a reasonable block time despite large fluctuations in effective hash power.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately from a gamma distribution, and further still by a distribution that contains a more complex model of effective hash power. 
+Using an exponential distribution as a model of block time distribution and an exponential moving average of network hash power, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Tentative empirical data from the Hycon network indicates that this maintains a reasonable block time despite large fluctuations in effective hash power.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately by a gamma distribution, and further still by a distribution that contains a more complex model of effective hash power. 
 
 \bibliography{mybib}
 \bibliographystyle{ieeetr}
