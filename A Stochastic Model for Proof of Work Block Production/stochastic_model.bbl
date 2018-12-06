@@ -35,20 +35,10 @@
 {Satoshi Nakamoto}, {\em Bitcoin: A Peer-to-Peer Electronic Cash System}.
 \newblock Available at \url{https://bitcoin.org/bitcoin.pdf}.
 
-\bibitem{BitcoinPOW}
-{Bitcoin Core}, {\em pow.cpp}.
+\bibitem{BitcoinCore}
+{Bitcoin Core}, {\em Bitcoin Developer Reference}.
 \newblock Available at
-  \url{https://github.com/bitcoin/bitcoin/blob/384967f311b4c6b1d6c797f7821d25feb26bafbf/src/pow.cpp#L74}.
-
-\bibitem{EthereumPOW}
-{Go Ethereum}, {\em sealer.go}.
-\newblock Available at
-  \url{https://github.com/ethereum/go-ethereum/blob/144c1c6c52456808428e2b69dbe5c4ebfc3606ca/consensus/ethash/sealer.go#L166}.
-
-\bibitem{EthereumYellowpaper}
-{Dr. Gavin Wood}, {\em Ethereum: A Secure Decentralised Generalised Transaction
-  Ledger}.
-\newblock Available at \url{https://ethereum.github.io/yellowpaper/paper.pdf}.
+  \url{https://bitcoin.org/en/developer-reference#block-headers}.
 
 \bibitem{CryptoHashFunctions}
 P.~Rogaway and T.~Shrimpton, {\em Cryptographic Hash-Function Basics:

@@ -10,20 +10,20 @@
 
 
 \begin{abstract}
-In Proof of Work blockchain systems, block production time can be modeled as an exponential distribution, which provides a natural method for adjusting to changes in network hashpower via a cumulative distribution function.  The cumulative distribution function can be adjusted by modeling network hashpower via two exponential moving averages, one for block production time and the other for block work, and by choosing a desired quantile for a target time to produce a block.  Improvements to the model include accounting for latency in hashpower consolidation and block propagation.     
+In Proof of Work blockchain systems, block production time can be modeled as an exponential distribution, which provides a natural method for adjusting to changes in network hash power via a cumulative distribution function.  The cumulative distribution function can be adjusted by modeling network hash power via two exponential moving averages, one for block production time and the other for block work, and by choosing a desired quantile for a target time to produce a block.  The bias in the exponential moving averages toward present information can be tuned such that the variance in the moving averages is tolerable.  Improvements to the model include accounting for latency in hash power consolidation and block propagation.     
 \end{abstract}
 
 \section{Introduction}
 Methods of difficulty adjustment in proof of work blockchains have gone through several iterations since the introduction of Bitcoin in 2009.  
 \newline
 
-The original algorithm takes the average block time over a 2016 block period, approximately once every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hashpower.  In Bitcoin, a reduction of network hashpower of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  Consequently transaction processing throughput is reduced for an extended period, leading to higher transaction fees.   
+Bitcoin's original algorithm calculates the average block time over a 2016 block period, approximately once every two weeks, and produces a new target based on the average block time over the period ~\cite{BitcoinRetarget}.  However, it is vulnerable to extreme changes in hash power.  In Bitcoin, a reduction of network hash power of 50\% at the beginning of a 2016 block period would take nearly one month to correct to an appropriate difficulty and resume normal 10-minute block times.  Consequently transaction processing throughput is reduced for an extended period, leading to higher transaction fees.   
 \newline
 
 In response to the drawbacks of Bitcoin's algorithm, other projects have taken to calculating a new difficulty target after every block.   
 \newline
 
-Bitcoin Cash uses a simple moving average (SMA) of time over the last 144 blocks to calculate the difficulty for the next block ~\cite{Bitcoin-ABC}.  An SMA allows difficulty to respond appropriately in the event of extreme changes in hashpower, as were experienced in the early days of the Bitcoin Cash fork.  Bitcoin Cash was especially vulnerable to hashpower fluctuation due to a combination of the limited number of options ASIC-based miners have in choosing which currency to mine and the relatively unresponsive nature of Bitcoin's difficulty adjustment \cite{BitcoinCashMining}.  In turn, the network hashpower fluctuated by as much as 300\% \cite{BitcoinCashDifficulty} over the span of 12 hours on multiple occasions.   
+Bitcoin Cash uses a simple moving average (SMA) of time over the last 144 blocks to calculate the difficulty for the next block ~\cite{Bitcoin-ABC}.  An SMA allows difficulty to be more responsive to extreme changes in hash power, such as in the early days of the Bitcoin Cash fork.  Bitcoin Cash was subject to regular severe hash power fluctuation due to a combination of the limited number of options ASIC-based miners have in choosing which currency to mine and the relatively unresponsive nature of Bitcoin's difficulty adjustment \cite{BitcoinCashMining}.  The network hash power fluctuated by as much as 300\% \cite{BitcoinCashDifficulty} over the span of 12 hours on multiple occasions.   
 \newline
 
 Ethereum uses a piece-wise function to adjust its difficulty.  If the block time of the last block is above 20 seconds, the difficulty is adjusted downward; if the block time is less than 10 seconds, the difficulty is adjusted upward \cite{EthereumDifficulty}.  In addition to this calculation, the presence of uncle blocks (due to Ethereum's implementation of GHOST) adds a modifier to how the difficulty is adjusted \cite{EthereumUncles}.
@@ -38,13 +38,13 @@ In a Proof of Work based blockchain system, the hash $h$ of a block is required 
 \forall \text{ } h \in H_u, \text{ } h \le D
 \end{equation}
 
-The probability that a randomly chosen hash value $h \in H_u$ can be represented by proportion of the cardinality $|H_u|$ divided by the cardinality of the set of possible hash outputs $|H|$ of the hash function: 
+The probability that a randomly chosen hash value $h$ is usable ($h \in H \land h \in H_u$) can be represented by proportion of the cardinality $|H_u|$ divided by the cardinality of the set of possible hash outputs $|H|$ of the hash function: 
 
 \begin{equation}
-	P(h \in H_u) = \frac{|H_u|}{|H|} 
+	P(h \in H_u | h \in H) = \frac{|H_u|}{|H|} 
 \end{equation}
 
-The reciprocal of this probability represents the expected or mean number of randomly chosen hashes, to produce a hash $h \in H_u$, more commonly known as the block difficulty.  Thus, a lower target value $D$ results in a higher difficulty, and allows the network to control the amount of work required to produce a block.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty to minimize the difference between the target mean time $T$ and actual mean block time.  
+The reciprocal of this probability represents the expected or mean number of randomly chosen hashes, to produce a usable hash $h \in H_u$, more commonly known as the block difficulty \cite{BitcoinCore}.  Thus, a lower target value $D$ results in a higher difficulty, and allows the network to control the mean amount of work required to produce a block.  Combined with an estimate of the total hashrate of the network, the protocol may adjust difficulty to minimize the difference between the target mean time $T$ and actual mean block time.  
 
 \section{Properties of Cryptographically Secure Hashing Functions}
 For a given hashing function to be considered cryptographically secure, the following three properties \cite{CryptoHashFunctions} must be present: 
@@ -66,7 +66,7 @@ For a hash function to be collision resistant, it must be difficult to create a 
 These properties are required for Proof of Work blockchain systems to ensure that the block production process is stochastic.  Some examples of popular hashing algorithms used for Proof of Work include SHA-256, SHA-3, Blake2b, Skein, and Gr$\o$stl, all of which are widely considered to be cryptographically secure \cite{CryptoAlgos}. 
 
 \subsection{Implications of Cryptographically Secure Hashing Functions in Proof of Work Blockchains}
-Using a cryptographically secure hashing algorithm means that there is no strategy for choosing an input which gives a greater chance of producing a desired output, given the random nature of the resulting hash values; they are represented by a discrete random variable with a uniform distribution.  
+Using a cryptographically secure hashing algorithm means that there is no practical strategy for choosing an input which gives a greater chance of producing a desired output, given the random nature of the resulting hash values; in our model they are represented by a discrete random variable with a uniform distribution.  
 \newline
 
 Thus, the distribution that describes the relationship between several trials and the chance of success of a given number of trials $k$ can be described by the cumulative distribution function of a geometric distribution, where $p$ represents the chance of success of any individual hashing attempt.   
@@ -76,20 +76,26 @@ CDF(p, k) = 1 - (1 - p)^k
 \end{equation}
 
 \pagebreak
-From the cumulative distribution function, it is possible to solve for $p$ for the desired distribution for a given $k$ and desired quantile $Q$.  
+From the cumulative distribution function, it is possible to solve for $p$ for the desired distribution for a given $k$ and desired quantile $Q$.
 
 \begin{equation}
 p = 1 - (1 - Q)^\frac{1}{k}
 \end{equation}
 
+Using $p$, a new $D$ value can be selected via:
+
+\begin{equation}
+D = \frac{1}{p}
+\end{equation}
+
 \section{Estimating Network Hashrate}
-To choose a new difficulty generating parameter $p$, it is important to find an appropriate value for $k$, the number of trials.  However, in a decentralized adversarial environment, $k$ cannot be measured directly.  Instead, $k$ must be estimated from observations of past data.  One method of estimating $k$ is to use the mean number of expected trials $\hat{k_i} $ from previous $p_i$ values.  
+To choose a new difficulty generating parameter $p$, it is important to find an appropriate value for $k$, the expected number of trials, commonly referred to as work.  However, in a decentralized adversarial environment, $k$ cannot be measured directly.  Instead, $k$ must be estimated from observations of past data.  One method of estimating $k$ is to use the mean number of expected trials $\hat{k_i} $ from previous $p_i$ values.  
  
 \begin{equation}
 \hat{k_{i}} = \frac{1}{p_{i}}
 \end{equation}
 
-As hashpower is prone to fluctuation due to market forces, energy availability, etc., recent observations of network hashpower are more relevant than older observations for the purpose of adjusting difficulty.  We propose an exponential moving average to efficiently capture this distinction.  Since hashrate is a measure of hashes over a period, two observations are needed to form an estimate: the rate of block production $\beta_i$ and the past values of $\hat{k}_i$.
+As hash power is prone to fluctuation due to market forces, energy availability, etc., recent observations of network hash power are more relevant than older observations for the purpose of adjusting difficulty.  We propose an exponential moving average to efficiently capture this distinction.  Since hashrate is a measure of hashes over a period, two observations are needed to form an estimate: the miner reported block time $\beta_i$ and the past values of $\hat{k}_i$.  As $\beta_i$ is subject to manipulation, it must be bounded by some maximum value $\beta_{max}$.  
 
 \begin{equation}
 EMA(k_{i}) = \alpha \hat{k_{i}} + (1 - \alpha) \hat{k}_{i - 1}
@@ -102,7 +108,7 @@ EMA(\beta_{i}) = \alpha \beta_{i} + (1 - \alpha) \beta_{i - 1}
 
 \subsection{Choosing an $\alpha$ value}
 
-These parameters may be tuned by a sensitivity parameter $\alpha$.  An $\alpha$ value that is too high is prone to manipulation and attack, as a small number of inputs can significantly change the average.  Conversely, an $\alpha$ value that is too low is unable to respond to extreme changes in network conditions, leading to undesirable block production rates.
+As observed data is subject to luck, manipulation, or poor clock synchronization, the bias $\alpha$ toward present data must be appropriately selected.  An $\alpha$ value that is too high is prone to manipulation and attack, as a small number of inputs can significantly change the average.  However, a high $\alpha$ is also capable of reacting to severe changes in network conditions more quickly.  Conversely, a low $\alpha$ is significantly harder to manipulate, but is unable to respond to severe changes in network conditions, leading to potentially undesirable block production rates.
 \newline 
 
  A helpful metric for choosing an $\alpha$ parameter is the proportion of influence of new inputs to old inputs $\xi$:
@@ -123,19 +129,19 @@ For a given $\xi$, an $\alpha$ may be chosen from the required number of observa
 \alpha = 1 - \xi^\frac{1}{x}
 \end{equation}
 
-In the context of security in a blockchain, $x$ is the number of maliciously crafted blocks required to have artificial inputs to have $\xi$ influence over the EMA calculations.  In the context of performance, $x$ is the number of blocks needed to respond with $\xi$ effectiveness over extreme changes in network configuration.  
+In the context of security in a blockchain, $x$ is the number of maliciously crafted blocks required to have artificial inputs to have $\xi$ influence over the EMA calculations.  In the context of sensitivity, $x$ is the number of blocks needed to respond with $\xi$ effectiveness over extreme changes in network configuration.  
 \newline
 
 We suggest that $\alpha$ be chosen such that the expected cost of acquiring $\xi$ influence by any one party be greater than or equal to the cost of attacking the network via other means.  
 
 \subsection{Choosing a Difficulty Parameter}
-The goal of the difficulty parameter $p$ is to control the block production rate $\beta$ such that $\beta$ converges to some target $T$.  An estimated network hashrate $\hat{\lambda}$ can be defined as: 
+The role of the difficulty parameter $p$ is to control the block production rate $\beta$ such that the difference between $\beta$ converges to some target $T$ is minimized.  An estimated network hashrate $\hat{\lambda}$ can be defined as: 
 
 \begin{equation}
 \hat{\lambda} = \frac{EMA(\hat{k})}{EMA(\beta)}
 \end{equation}
 
-To adjust p such that $\hat{\lambda}$ converges toward $T$, a new mean $k$ value may be decided via:
+To adjust $p$ such that $\hat{\lambda}$ approaches $T$, a new expected mean $k$ value may be chosen via:
 
 \begin{equation}
 	k = T \cdot \hat{\lambda}
@@ -147,10 +153,10 @@ Thus, a new difficulty parameter $p$ may be determined by substituting for $k$:
 p = 1 - (1 - Q)^\frac{1}{T \hat{\lambda}} 
 \end{equation}
 
-The choice of quantile $Q$ should be determined by the distribution of block rates such that the target time describes the chosen quantile. 
+The choice of quantile $Q$ should be determined by the distribution of block rates such that the target time describes the chosen quantile; i.e. $Q = \frac{1}{2}$ suggests that 50\% of blocks will be produced prior to $T$, and 50\% after $T$ making $T$ the median block time.
 
 \subsection{Implications of the Stochastic Model}  
-Under theoretical, ideal network conditions where block propagation is instantaneous and all sources of hashpower can immediately respond to mining a new block with a discrete number of hashes, the distribution of block times in this scheme follows a geometric distribution.  However, due to the high number of hashes typically required to produce a block, and since multiple hashing attempts may overlap from different parties, we suggest that an exponential model more appropriately describes the distribution of block times: 
+Under theoretical, ideal network conditions where block propagation is instantaneous and all sources of hash power can immediately respond to mining a new block with a discrete number of hashes, the distribution of block times in this scheme follows a geometric distribution.  However, due to the high number of hashes typically required to produce a block we suggest that an exponential model more appropriately describes the distribution of block times: 
 
 \begin{equation}
 PDF(t) = ke^{-kt}
@@ -159,11 +165,11 @@ PDF(t) = ke^{-kt}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"./ideal hycon"}
-	\caption{\footnotesize The theoretical block time distribution in the Hycon Network \cite{HyconNetwork}. The red portion represents the lower half of the distribution. \cite{GammaDistHycon}}
+	\caption{\footnotesize The theoretical block time distribution in the Hycon Network \cite{HyconNetwork}. The red portion represents the lower 50\% of the distribution. \cite{GammaDistHycon}}
 \end{figure}
 
 \section{Future Work}
-In most real circumstances network latency in propagating new blocks makes the total hashpower increase over a delay period until all miners are mining on the new block.  This introduces a skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is no longer constant, but variable, a better model for the distribution of block times follows a gamma distribution \cite{GammaDistDefinition}, where shape $A$ and rate $B$ may be computed from the mean and variance of the observed block times.  
+In most real circumstances network latency in propagating new blocks makes the total hash power increase over a delay period until all miners are mining on the new block, introducing a higher variance and skew in the otherwise monotonically decreasing character of the exponential distribution.  As the skew is a function of typical block propagation latency, a better model for the distribution of block times follows a gamma distribution \cite{GammaDistDefinition}, where shape $A$ and rate $B$ may be computed from the mean and variance of the observed block times.  
 
 \begin{equation}
 PDF(t) = \frac{1}{\Gamma(A)} t^{A - 1}e^{-Bt}
@@ -172,13 +178,11 @@ PDF(t) = \frac{1}{\Gamma(A)} t^{A - 1}e^{-Bt}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"./real hycon"}
-	\caption{\footnotesize A better approximation of the real block time distribution in the Hycon Network. The red portion represents the lower half of the distribution. \cite{GammaDistHycon}}
+	\caption{\footnotesize A better approximation of the real block time distribution in the Hycon Network. The red portion represents the lower 50\% of the distribution. \cite{GammaDistHycon}}
 \end{figure}
 
-A difficulty adjustment algorithm exists for the approximate gamma distribution, although as alpha and beta may vary over time, a more complex analysis is needed to maintain the security thresholds and prevent manipulation of inputs by malicious parties.  One approach may be to model $A$ and $B$ with exponential moving averages with a sensitivity appropriate with respect to security and performance.  
+A difficulty adjustment algorithm exists for the approximate gamma distribution, although as $A$ and $B$ may vary over time, a more complex analysis is needed to maintain the security thresholds and prevent manipulation of inputs by malicious parties.  An approach similar to our prior parameter estimation may be to model $A$ and $B$ with exponential moving averages with a sensitivity appropriate with respect to security and performance.  
 \newline
-
-\pagebreak
 
 An alternate model of skew based on block propagation may resemble the equation: 
 
@@ -189,8 +193,10 @@ An alternate model of skew based on block propagation may resemble the equation:
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"./hashpower ramp"}
-	\caption{\footnotesize How hashrate might tend to full consolidation over time \cite{Wolfram}}
+	\caption{\footnotesize How hashrate might reach full efficiency over time \cite{Wolfram}}
 \end{figure}
+
+\pagebreak
 
 Where $\Lambda$ describes the proportion of the network not updated for each increase in $t$, and $\tau$ is the time for $1 - \Lambda$ of the network to be updated. The probability density function of such a distribution would be of the form: 
 
@@ -204,10 +210,16 @@ PDF(t) = 2 \cdot t\hat{\lambda}p(1 - \Lambda^t) \cdot e^{-t^2\hat{\lambda}p(1 - 
 	\caption{\footnotesize An example PDF from the advanced model \cite{AdvancedDistribution}}
 \end{figure}
 
-\pagebreak
+Comparing the theoretical models to observed data, it is clear that the distribution of block times follows an exponential character following a sharp rise as effective hash rate increases.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"./blocktime distribution"}
+	\caption{\footnotesize The observed distribution of block times from the Hycon network}
+\end{figure}
 
 \section{Conclusion}
-Using an exponential distribution as a model of block time distribution and an exponential moving average of network hashpower, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately from a gamma distribution, and further still by a distribution that contains a more complex model of hashrate consolidation. 
+Using an exponential distribution as a model of block time distribution and an exponential moving average of network hash power, it is possible to select a difficulty that under theoretical conditions maintains a desired time at the specified quantile.  Tentative empirical data from the Hycon network indicates that this maintains a reasonable block time despite large fluctuations in effective hash power.  Real factors, such as network latency and hashrate consolidation introduce a skew that can be modeled more accurately from a gamma distribution, and further still by a distribution that contains a more complex model of effective hash power. 
 
 \bibliography{mybib}
 \bibliographystyle{ieeetr}
