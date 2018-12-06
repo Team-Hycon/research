@@ -10,7 +10,7 @@
 
 
 \begin{abstract}
-In Proof of Work blockchain systems, block production time can be modeled as an exponential distribution, which provides a natural method for adjusting to changes in network hash power via a cumulative distribution function.  The cumulative distribution function can be adjusted by modeling network hash power via two exponential moving averages, one for block production time and the other for block work, and by choosing a desired quantile for a target time to produce a block.  The bias in the exponential moving averages toward present information can be tuned such that the variance in the moving averages is tolerable.  Improvements to the model include accounting for latency in hash power consolidation and block propagation.     
+In Proof of Work blockchain systems, block production time can be modeled as an exponential distribution, which provides a natural method for adjusting to changes in network hash power via a cumulative distribution function.  The cumulative distribution function can be adjusted by modeling network hash power via two exponential moving averages, one for block production time and the other for block work, and by choosing a desired quantile for a target time to produce a block.  The bias in the exponential moving averages toward present information can be tuned such that the variance in the moving averages is tolerable.  Improvements to the model include accounting for latency in effective hash power and block propagation.     
 \end{abstract}
 
 \section{Introduction}
